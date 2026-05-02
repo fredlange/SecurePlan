@@ -48,3 +48,14 @@ data class Calculation(
     val createdAt: Long,
     val updatedAt: Long
 )
+
+data class ProjectFile(
+    val id: String,
+    val projectId: String,
+    val name: String,
+    val mimeType: String,
+    val filePath: String,
+    val sizeBytes: Long,
+    val addedAt: Long,
+    val notes: String
+)

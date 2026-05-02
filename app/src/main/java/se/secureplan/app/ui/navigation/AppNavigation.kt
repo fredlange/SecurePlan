@@ -11,6 +11,7 @@ import se.secureplan.app.feature.components.ComponentSummaryScreen
 import se.secureplan.app.feature.dashboard.DashboardScreen
 import se.secureplan.app.feature.drawing.DrawingScreen
 import se.secureplan.app.feature.export.ExportScreen
+import se.secureplan.app.feature.files.ProjectFileScreen
 import se.secureplan.app.feature.photos.GeoPhotoDetailScreen
 import se.secureplan.app.feature.photos.GeoPhotoScreen
 import se.secureplan.app.feature.products.AddEditProductScreen
@@ -36,6 +37,7 @@ object Routes {
     const val PROJECT_PROTOCOLS    = "project/{projectId}/protocols"
     const val PROTOCOL_FORM        = "project/{projectId}/protocol/form?templateId={templateId}&instanceId={instanceId}"
     const val PROJECT_EXPORT       = "project/{projectId}/export"
+    const val PROJECT_FILES        = "project/{projectId}/files"
     const val SETTINGS             = "settings"
 
     fun dashboard(projectId: String)           = "dashboard/$projectId"
@@ -53,6 +55,7 @@ object Routes {
         return "project/$projectId/protocol/form?$t&$i"
     }
     fun projectExport(projectId: String)       = "project/$projectId/export"
+    fun projectFiles(projectId: String)        = "project/$projectId/files"
 }
 
 @Composable
@@ -90,7 +93,8 @@ fun AppNavigation() {
                 onPhotosClick       = { navController.navigate(Routes.projectPhotos(projectId)) },
                 onProductsClick     = { navController.navigate(Routes.PRODUCTS) },
                 onProtocolsClick    = { navController.navigate(Routes.projectProtocols(projectId)) },
-                onExportClick       = { navController.navigate(Routes.projectExport(projectId)) }
+                onExportClick       = { navController.navigate(Routes.projectExport(projectId)) },
+                onFilesClick        = { navController.navigate(Routes.projectFiles(projectId)) }
             )
         }
 
@@ -251,6 +255,19 @@ fun AppNavigation() {
         composable(Routes.SETTINGS) {
             SettingsScreen(
                 onBack = { navController.popBackStack() }
+            )
+        }
+
+        // ── Project Files ─────────────────────────────────────────────────────
+
+        composable(
+            route = Routes.PROJECT_FILES,
+            arguments = listOf(navArgument("projectId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val projectId = backStackEntry.arguments?.getString("projectId") ?: return@composable
+            ProjectFileScreen(
+                projectId = projectId,
+                onBack    = { navController.popBackStack() }
             )
         }
     }

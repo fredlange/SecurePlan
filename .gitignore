@@ -1,0 +1,46 @@
+# Built application files
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# Build directories
+build/
+app/build/
+*/build/
+
+# Gradle
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+
+# Kotlin compiler sessions
+.kotlin/
+
+# Local configuration files
+local.properties
+keystore.properties
+*.jks
+*.keystore
+
+# IntelliJ IDEA / Android Studio
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/libraries
+.idea/caches
+.idea/.name
+.idea/compiler.xml
+.idea/jarRepositories.xml
+.idea/deploymentTargetSelector.xml
+.idea/deviceManager.xml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Proguard
+proguard/

@@ -175,3 +175,14 @@ fun Calculation.toEntity() = CalculationEntity(
     inputsJson = inputsJson, result = result, unit = unit, notes = notes,
     createdAt = createdAt, updatedAt = updatedAt
 )
+
+// ─── ProjectFile ─────────────────────────────────────────────────────────────
+fun ProjectFileEntity.toDomain() = ProjectFile(
+    id = id, projectId = projectId, name = name, mimeType = mimeType,
+    filePath = filePath, sizeBytes = sizeBytes, addedAt = addedAt, notes = notes
+)
+
+fun ProjectFile.toEntity() = ProjectFileEntity(
+    id = id, projectId = projectId, name = name, mimeType = mimeType,
+    filePath = filePath, sizeBytes = sizeBytes, addedAt = addedAt, notes = notes
+)

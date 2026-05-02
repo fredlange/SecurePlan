@@ -76,3 +76,12 @@ class CalculationRepositoryImpl @Inject constructor(
     override suspend fun saveCalculation(calculation: Calculation) = dao.insertCalculation(calculation.toEntity())
     override suspend fun deleteCalculation(id: String) = dao.deleteCalculationById(id)
 }
+
+class ProjectFileRepositoryImpl @Inject constructor(
+    private val dao: ProjectFileDao
+) : ProjectFileRepository {
+    override fun getFilesForProject(projectId: String): Flow<List<ProjectFile>> =
+        dao.getFilesForProject(projectId).map { it.map { e -> e.toDomain() } }
+    override suspend fun saveFile(file: ProjectFile) = dao.insertFile(file.toEntity())
+    override suspend fun deleteFile(id: String) = dao.deleteFileById(id)
+}

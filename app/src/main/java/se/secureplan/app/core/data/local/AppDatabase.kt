@@ -17,9 +17,10 @@ import se.secureplan.app.core.data.local.entity.*
         GeoPhotoEntity::class,
         ProtocolTemplateEntity::class,
         ProtocolInstanceEntity::class,
-        CalculationEntity::class
+        CalculationEntity::class,
+        ProjectFileEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = true
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -34,6 +35,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun protocolTemplateDao(): ProtocolTemplateDao
     abstract fun protocolInstanceDao(): ProtocolInstanceDao
     abstract fun calculationDao(): CalculationDao
+    abstract fun projectFileDao(): ProjectFileDao
 
     companion object {
         const val DATABASE_NAME = "secureplan.db"

@@ -73,6 +73,10 @@ android {
 configurations.all {
     exclude(group = "stax", module = "stax-api")
     exclude(group = "xml-apis", module = "xml-apis")
+    // log4j-api brings OSGI annotations that break R8 on Android
+    exclude(group = "org.apache.logging.log4j", module = "log4j-api")
+    // OSGI core pulled in transitively by xmlbeans/poi-ooxml
+    exclude(group = "org.osgi", module = "org.osgi.core")
 }
 
 dependencies {

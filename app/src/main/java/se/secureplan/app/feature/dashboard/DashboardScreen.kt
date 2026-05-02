@@ -105,6 +105,7 @@ fun DashboardScreen(
     onProductsClick: () -> Unit = {},
     onProtocolsClick: () -> Unit = {},
     onExportClick: () -> Unit = {},
+    onFilesClick: () -> Unit = {},
     viewModel: DashboardViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -216,7 +217,8 @@ fun DashboardScreen(
                         onComponentsClick   = onComponentsClick,
                         onProductsClick     = onProductsClick,
                         onProtocolsClick    = onProtocolsClick,
-                        onExportClick       = onExportClick
+                        onExportClick       = onExportClick,
+                        onFilesClick        = onFilesClick
                     )
                 }
                 item { Spacer(Modifier.height(80.dp)) }
@@ -329,7 +331,8 @@ private fun QuickActionsRow(
     onComponentsClick: () -> Unit = {},
     onProductsClick: () -> Unit = {},
     onProtocolsClick: () -> Unit = {},
-    onExportClick: () -> Unit = {}
+    onExportClick: () -> Unit = {},
+    onFilesClick: () -> Unit = {}
 ) {
     LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         item { QuickActionChip(Icons.Default.PhotoCamera,  "Foton",       onPhotosClick) }
@@ -338,6 +341,7 @@ private fun QuickActionsRow(
         item { QuickActionChip(Icons.Default.Inventory2,   "Produkter",   onProductsClick) }
         item { QuickActionChip(Icons.Default.Assignment,   "Protokoll",   onProtocolsClick) }
         item { QuickActionChip(Icons.Default.PictureAsPdf, "Exportera",   onExportClick) }
+        item { QuickActionChip(Icons.Default.Folder,       "Filer",       onFilesClick) }
     }
 }
 

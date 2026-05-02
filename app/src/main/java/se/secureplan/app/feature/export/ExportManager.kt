@@ -58,11 +58,14 @@ class ExportManager @Inject constructor(
             placementsMap[drawing.id] = placements
         }
 
+        // SSF 130 applies only to intrusion/alarm systems (not CCTV which is covered by SSF 1060).
+        // Filter to non-CCTV products to match CalculationsViewModel behaviour.
         val componentLoads = placementsMap.values.flatten()
             .groupBy { it.productId }
             .mapNotNull { (productId, placements) ->
                 val product = allProducts[productId ?: return@mapNotNull null] ?: return@mapNotNull null
-                if (product.powerStandbyMa > 0 || product.powerAlarmMa > 0) {
+                val isCctv = product.category == "CCTV"
+                if (!isCctv && (product.powerStandbyMa > 0 || product.powerAlarmMa > 0)) {
                     Ssf130Calculator.ComponentLoad(
                         name = product.name,
                         count = placements.size,

@@ -36,6 +36,7 @@ object DatabaseModule {
     @Provides fun provideProtocolTemplateDao(db: AppDatabase): ProtocolTemplateDao = db.protocolTemplateDao()
     @Provides fun provideProtocolInstanceDao(db: AppDatabase): ProtocolInstanceDao = db.protocolInstanceDao()
     @Provides fun provideCalculationDao(db: AppDatabase): CalculationDao = db.calculationDao()
+    @Provides fun provideProjectFileDao(db: AppDatabase): ProjectFileDao = db.projectFileDao()
 }
 
 @Module
@@ -74,4 +75,7 @@ abstract class RepositoryModule {
 
     @Binds @Singleton
     abstract fun bindCalculationRepository(impl: CalculationRepositoryImpl): CalculationRepository
+
+    @Binds @Singleton
+    abstract fun bindProjectFileRepository(impl: ProjectFileRepositoryImpl): ProjectFileRepository
 }

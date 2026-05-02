@@ -46,3 +46,9 @@ interface CalculationRepository {
     suspend fun saveCalculation(calculation: Calculation)
     suspend fun deleteCalculation(id: String)
 }
+
+interface ProjectFileRepository {
+    fun getFilesForProject(projectId: String): Flow<List<ProjectFile>>
+    suspend fun saveFile(file: ProjectFile)
+    suspend fun deleteFile(id: String)
+}
