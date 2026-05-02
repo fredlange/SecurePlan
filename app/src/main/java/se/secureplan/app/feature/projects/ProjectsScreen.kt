@@ -1,5 +1,6 @@
 package se.secureplan.app.feature.projects
 
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -25,6 +26,7 @@ import java.util.*
 @Composable
 fun ProjectsScreen(
     onProjectClick: (String) -> Unit,
+    onSettingsClick: () -> Unit = {},
     viewModel: ProjectsViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -40,7 +42,7 @@ fun ProjectsScreen(
                     titleContentColor = MaterialTheme.colorScheme.onPrimary
                 ),
                 actions = {
-                    IconButton(onClick = { /* TODO: settings */ }) {
+                    IconButton(onClick = onSettingsClick) {
                         Icon(Icons.Default.Settings, contentDescription = "Settings",
                             tint = MaterialTheme.colorScheme.onPrimary)
                     }

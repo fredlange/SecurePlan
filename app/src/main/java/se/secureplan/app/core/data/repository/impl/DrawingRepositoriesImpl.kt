@@ -24,6 +24,8 @@ class SymbolPlacementRepositoryImpl @Inject constructor(
 ) : SymbolPlacementRepository {
     override fun getPlacementsForDrawing(drawingId: String): Flow<List<SymbolPlacement>> =
         dao.getPlacementsForDrawing(drawingId).map { it.map { e -> e.toDomain() } }
+    override fun getPlacementsForProject(projectId: String): Flow<List<SymbolPlacement>> =
+        dao.getPlacementsForProject(projectId).map { it.map { e -> e.toDomain() } }
     override suspend fun savePlacement(placement: SymbolPlacement) =
         dao.insertPlacement(placement.toEntity())
     override suspend fun deletePlacement(id: String) = dao.deletePlacementById(id)

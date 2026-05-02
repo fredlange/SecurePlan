@@ -46,14 +46,22 @@ fun Drawing.toEntity() = DrawingEntity(
 // ─── Product ─────────────────────────────────────────────────────────────────
 fun ProductEntity.toDomain() = Product(
     id = id, name = name, manufacturer = manufacturer, articleNumber = articleNumber,
-    category = category, description = description, specSheetUri = specSheetUri,
-    imageUri = imageUri, price = price, currency = currency, isTemplate = isTemplate
+    category = category, description = description,
+    powerStandbyMa = powerStandbyMa, powerAlarmMa = powerAlarmMa,
+    voltageV = voltageV, powerWatt = powerWatt,
+    widthMm = widthMm, heightMm = heightMm, depthMm = depthMm, weightG = weightG,
+    certifications = certifications, specSheetUri = specSheetUri, imageUri = imageUri,
+    price = price, currency = currency, isCustom = isCustom, createdAt = createdAt
 )
 
 fun Product.toEntity() = ProductEntity(
     id = id, name = name, manufacturer = manufacturer, articleNumber = articleNumber,
-    category = category, description = description, specSheetUri = specSheetUri,
-    imageUri = imageUri, price = price, currency = currency, isTemplate = isTemplate
+    category = category, description = description,
+    powerStandbyMa = powerStandbyMa, powerAlarmMa = powerAlarmMa,
+    voltageV = voltageV, powerWatt = powerWatt,
+    widthMm = widthMm, heightMm = heightMm, depthMm = depthMm, weightG = weightG,
+    certifications = certifications, specSheetUri = specSheetUri, imageUri = imageUri,
+    price = price, currency = currency, isCustom = isCustom, createdAt = createdAt
 )
 
 // ─── Symbol ──────────────────────────────────────────────────────────────────

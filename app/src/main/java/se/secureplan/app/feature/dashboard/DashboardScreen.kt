@@ -15,6 +15,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -98,6 +99,12 @@ fun DashboardScreen(
     projectId: String,
     onDrawingClick: (String) -> Unit,
     onBack: () -> Unit,
+    onComponentsClick: () -> Unit = {},
+    onCalculationsClick: () -> Unit = {},
+    onPhotosClick: () -> Unit = {},
+    onProductsClick: () -> Unit = {},
+    onProtocolsClick: () -> Unit = {},
+    onExportClick: () -> Unit = {},
     viewModel: DashboardViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -128,7 +135,7 @@ fun DashboardScreen(
                     titleContentColor = MaterialTheme.colorScheme.onPrimary
                 ),
                 actions = {
-                    IconButton(onClick = { /* TODO: export */ }) {
+                    IconButton(onClick = onExportClick) {
                         Icon(Icons.Default.Share, contentDescription = "Export",
                             tint = MaterialTheme.colorScheme.onPrimary)
                     }
@@ -203,7 +210,14 @@ fun DashboardScreen(
                         fontWeight = FontWeight.SemiBold)
                 }
                 item {
-                    QuickActionsRow()
+                    QuickActionsRow(
+                        onPhotosClick       = onPhotosClick,
+                        onCalculationsClick = onCalculationsClick,
+                        onComponentsClick   = onComponentsClick,
+                        onProductsClick     = onProductsClick,
+                        onProtocolsClick    = onProtocolsClick,
+                        onExportClick       = onExportClick
+                    )
                 }
                 item { Spacer(Modifier.height(80.dp)) }
             }
@@ -309,18 +323,31 @@ private fun DrawingCard(drawing: Drawing, onClick: () -> Unit, onDelete: () -> U
 }
 
 @Composable
-private fun QuickActionsRow() {
+private fun QuickActionsRow(
+    onPhotosClick: () -> Unit = {},
+    onCalculationsClick: () -> Unit = {},
+    onComponentsClick: () -> Unit = {},
+    onProductsClick: () -> Unit = {},
+    onProtocolsClick: () -> Unit = {},
+    onExportClick: () -> Unit = {}
+) {
     LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        item { QuickActionChip(Icons.Default.PhotoCamera, "Add Photo") }
-        item { QuickActionChip(Icons.Default.Assignment, "Protocol") }
-        item { QuickActionChip(Icons.Default.Calculate, "Calculate") }
-        item { QuickActionChip(Icons.Default.PictureAsPdf, "Export PDF") }
+        item { QuickActionChip(Icons.Default.PhotoCamera,  "Foton",       onPhotosClick) }
+        item { QuickActionChip(Icons.Default.Calculate,    "Beräkningar", onCalculationsClick) }
+        item { QuickActionChip(Icons.Default.List,         "Komponenter", onComponentsClick) }
+        item { QuickActionChip(Icons.Default.Inventory2,   "Produkter",   onProductsClick) }
+        item { QuickActionChip(Icons.Default.Assignment,   "Protokoll",   onProtocolsClick) }
+        item { QuickActionChip(Icons.Default.PictureAsPdf, "Exportera",   onExportClick) }
     }
 }
 
 @Composable
-private fun QuickActionChip(icon: androidx.compose.ui.graphics.vector.ImageVector, label: String) {
-    ElevatedCard {
+private fun QuickActionChip(
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    label: String,
+    onClick: () -> Unit = {}
+) {
+    ElevatedCard(onClick = onClick) {
         Row(
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
             verticalAlignment = Alignment.CenterVertically,

@@ -16,6 +16,7 @@ class ProductRepositoryImpl @Inject constructor(
         dao.getProductsByCategory(category).map { it.map { e -> e.toDomain() } }
     override fun searchProducts(query: String) =
         dao.searchProducts(query).map { it.map { e -> e.toDomain() } }
+    override suspend fun getProductCount() = dao.getProductCount()
     override suspend fun saveProduct(product: Product) = dao.insertProduct(product.toEntity())
     override suspend fun deleteProduct(id: String) {
         dao.getProductById(id)?.let { dao.deleteProduct(it) }

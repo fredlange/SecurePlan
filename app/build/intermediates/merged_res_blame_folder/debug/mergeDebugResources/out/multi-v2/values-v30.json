@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "se.secureplan.app-mergeDebugResources-61:/values-v30/values-v30.xml",
+            "map": [
+                {
+                    "source": "/Users/fredriklange/.gradle/caches/8.9/transforms/11563304c5d4e832dc28adeccd4ecce0/transformed/material3-release/res/values-v30/values-v30.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "72",
+                        "endOffsets": "123"
+                    }
+                }
+            ]
+        }
+    ]
+}

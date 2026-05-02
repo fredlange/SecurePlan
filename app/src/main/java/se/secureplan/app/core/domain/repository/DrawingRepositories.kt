@@ -13,6 +13,7 @@ interface DrawingRepository {
 
 interface SymbolPlacementRepository {
     fun getPlacementsForDrawing(drawingId: String): Flow<List<SymbolPlacement>>
+    fun getPlacementsForProject(projectId: String): Flow<List<SymbolPlacement>>
     suspend fun savePlacement(placement: SymbolPlacement)
     suspend fun deletePlacement(id: String)
 }

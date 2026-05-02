@@ -6,6 +6,9 @@ import se.secureplan.app.core.data.local.entity.SymbolPlacementEntity
 
 @Dao
 interface SymbolPlacementDao {
+    @Query("SELECT sp.* FROM symbol_placements sp INNER JOIN drawings d ON sp.drawingId = d.id WHERE d.projectId = :projectId ORDER BY sp.createdAt ASC")
+    fun getPlacementsForProject(projectId: String): Flow<List<SymbolPlacementEntity>>
+
     @Query("SELECT * FROM symbol_placements WHERE drawingId = :drawingId ORDER BY createdAt ASC")
     fun getPlacementsForDrawing(drawingId: String): Flow<List<SymbolPlacementEntity>>
 

@@ -12,8 +12,11 @@ interface ProductDao {
     @Query("SELECT * FROM products WHERE category = :category ORDER BY name ASC")
     fun getProductsByCategory(category: String): Flow<List<ProductEntity>>
 
-    @Query("SELECT * FROM products WHERE isTemplate = 1 ORDER BY name ASC")
-    fun getTemplateProducts(): Flow<List<ProductEntity>>
+    @Query("SELECT * FROM products WHERE isCustom = 0 ORDER BY name ASC")
+    fun getBuiltInProducts(): Flow<List<ProductEntity>>
+
+    @Query("SELECT COUNT(*) FROM products")
+    suspend fun getProductCount(): Int
 
     @Query("SELECT * FROM products WHERE id = :id")
     suspend fun getProductById(id: String): ProductEntity?

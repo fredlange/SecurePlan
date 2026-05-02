@@ -60,8 +60,19 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/NOTICE"
+            excludes += "/META-INF/NOTICE.md"
+            excludes += "/META-INF/LICENSE"
+            excludes += "/META-INF/LICENSE.md"
+            excludes += "/META-INF/DEPENDENCIES"
+            excludes += "mozilla/public-suffix-list.txt"
         }
     }
+}
+
+configurations.all {
+    exclude(group = "stax", module = "stax-api")
+    exclude(group = "xml-apis", module = "xml-apis")
 }
 
 dependencies {
@@ -101,6 +112,10 @@ dependencies {
 
     // Gson
     implementation(libs.gson)
+    implementation(libs.androidx.exifinterface)
+
+    // Apache POI (Excel export)
+    implementation(libs.apache.poi)
 
     // Debug
     debugImplementation(libs.androidx.compose.ui.tooling)
