@@ -57,3 +57,74 @@ Tryck på den gröna **Run**-knappen ▶ när du valt en enhet (se alternativen 
 4. I Android Studio, öppna **Running Devices** → **+** → **Pair Devices Using Wi-Fi**
 5. Skanna QR-koden som visas i Android Studio med telefonen
 6. Enheten dyker upp i Run-menyn — välj den och tryck ▶
+
+---
+
+## Felsökning — vanliga Gradle-problem
+
+> Du behöver inte installera Gradle eller Kotlin manuellt. Android Studio sköter allt — men det kan gå fel om något saknas eller är felinställt.
+
+---
+
+### "Gradle sync failed" direkt efter clone
+
+**Orsak:** Android Studio behöver ladda ner Gradle och alla beroenden första gången, vilket kräver internetanslutning.
+
+**Lösning:**
+1. Kontrollera att du har internetåtkomst
+2. Välj **File → Sync Project with Gradle Files**
+3. Vänta tills statusfältet längst ner visar *"Gradle sync finished"*
+
+---
+
+### "SDK location not found" eller "No Android SDK found"
+
+**Orsak:** Android SDK är inte installerat eller hittas inte.
+
+**Lösning:**
+1. Gå till **File → Settings** (Windows/Linux) eller **Android Studio → Settings** (Mac)
+2. Välj **Appearance & Behavior → System Settings → Android SDK**
+3. Klicka **Edit** bredvid SDK-sökvägen och låt Android Studio installera SDK:n automatiskt
+
+---
+
+### "JDK not found" eller fel Java-version
+
+**Orsak:** Android Studio behöver JDK 17 eller senare. Det medföljer normalt, men kan saknas.
+
+**Lösning:**
+1. Gå till **File → Settings → Build, Execution, Deployment → Build Tools → Gradle**
+2. Under **Gradle JDK**, välj **Embedded JDK** (den som följer med Android Studio)
+3. Gör om Gradle sync
+
+---
+
+### Gradle sync hänger sig eller tar för lång tid
+
+**Lösning:**
+1. Stäng Android Studio helt
+2. Radera mappen `.gradle` i projektets rotmapp (den är återskapsbar)
+3. Öppna projektet igen — Android Studio laddar ner allt på nytt
+
+---
+
+### "Could not resolve" — beroenden kan inte laddas ner
+
+**Orsak:** Brandvägg, proxy eller tillfälligt nätverksproblem.
+
+**Lösning:**
+- Prova igen om en stund
+- Om du är på ett företagsnätverk, kontrollera att Maven Central (`repo.maven.apache.org`) och Google (`dl.google.com`) inte är blockerade
+- Prova med ett vanligt hemmanätverk eller mobil hotspot
+
+---
+
+### Appen byggs men kraschar vid start på emulatorn
+
+**Orsak:** Databasen i appen uppdaterades — gamla data är inkompatibel.
+
+**Lösning:** Avinstallera appen från emulatorn och kör igen:
+- Högerklicka på appikonen i emulatorn → **Uninstall**, eller kör i terminalen:
+  ```
+  adb uninstall se.secureplan.app
+  ```
