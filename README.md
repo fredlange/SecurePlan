@@ -31,4 +31,29 @@ Gemini är Googles AI-assistent inbyggd i Android Studio och hjälper dig först
 
 ### 4. Kör appen
 
-Anslut en Android-enhet (API 34+) eller starta en emulator, och tryck på den gröna **Run**-knappen ▶
+Tryck på den gröna **Run**-knappen ▶ när du valt en enhet (se alternativen nedan).
+
+---
+
+#### Alternativ A — Emulator (ingen fysisk enhet behövs)
+
+1. Välj **Device Manager** i höger sidofält (telefon-ikonen)
+2. Klicka **+** → **Create Virtual Device**
+3. Välj en telefon, t.ex. *Pixel 8*, och klicka **Next**
+4. Välj ett system-image med **API 34** eller senare — ladda ner det om det saknas
+5. Klicka **Finish** och starta emulatorn med ▶ i Device Manager
+
+---
+
+#### Alternativ B — Trådlöst via WiFi (kör på din egen telefon)
+
+> Telefonen och datorn måste vara på **samma WiFi-nätverk**.
+
+1. Aktivera **Utvecklaralternativ** på din Android-enhet:
+   - Gå till *Inställningar → Om telefonen*
+   - Tryck **7 gånger** på *Versionsnummer* tills du ser *"Du är nu en utvecklare"*
+2. Gå till *Inställningar → Utvecklaralternativ* och aktivera **Trådlös felsökning** (Wireless debugging)
+3. Öppna Wireless debugging och välj **Para ihop enhet med QR-kod**
+4. I Android Studio, öppna **Running Devices** → **+** → **Pair Devices Using Wi-Fi**
+5. Skanna QR-koden som visas i Android Studio med telefonen
+6. Enheten dyker upp i Run-menyn — välj den och tryck ▶
